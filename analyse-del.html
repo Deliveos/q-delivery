@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Agrin Delivery</title>
+
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <script src="assets/js/analyse1.js"></script>
+  <script src="https://d3js.org/d3.v6.js"></script>
+  
+  
+
+
+</head>
+
+<body class="animate__fadeIn">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+          
+        <a href="https://e-agrin.com/"><img src="assets/img/logo/agrin-logo.png" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="index.html">Главная</a></li>
+          <li class="dropdown"><a href="analyse.html"><span>Аналитика</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="analyse-del.html">Заявки на доставку</a></li>  
+              <li><a href="analyse-cour.html">Процентное соотношение курьерских служб на пользователей</a></li>  
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="ordersAll.html">Список всех заказов</a></li>
+          <li class="dropdown"><a href="#"><span>Услуги</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="delivery.html">Оформление доставки</a></li>  
+            </ul>
+          </li>
+          
+
+          <li><a href="registration.html" class="getstarted scrollto">Зарегистрироваться</a></li>
+          <li><a href="login.html" class="getstarted scrollto">Войти</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <button onclick="update(data1)" style="border: 0; padding: 10px 15px; background-color: rgb(59, 57, 57); color: white;">Заявки на доставку (месяц)</button>
+      <button onclick="update(data2)" style="border: 0; padding: 10px 15px; background-color: rgb(59, 57, 57); color: white;">Заявки на доставку (год) </button>
+      <button onclick="update(data3)" style="border: 0; padding: 10px 15px; background-color: rgb(59, 57, 57); color: white; margin-bottom: 40px;">Заявки на доставку (неделя) </button>
+          
+<!-- Create a div where the graph will take place -->
+      <div id="my_dataviz"></div>
+
+      <script>
+        const data1 = [
+   {group: "1-7 день", value: 4},
+   {group: "7-14 день", value: 16},
+   {group: "14-21 день", value: 8},
+   {group: "21-30 день", value: 8}
+];
+
+const data2 = [
+   {group: "Январь", value: 7},
+   {group: "Февраль", value: 1},
+   {group: "Март", value: 20},
+   {group: "Апрель", value: 7},
+   {group: "Май", value: 5},
+   {group: "Июнь", value: 4},
+   {group: "Июль", value: 2},
+   {group: "Август", value: 10},
+   {group: "Сентябрь", value: 10},
+   {group: "Октябрь", value: 32},
+   {group: "Ноябрь", value: 4},
+   {group: "Декабрь", value: 15},
+];
+
+const data3 = [
+   {group: "Понедельник", value: 15},
+   {group: "Вторник", value: 17},
+   {group: "Среда", value: 50},
+   {group: "Четверг", value: 72},
+   {group: "Пятница", value: 23},
+   {group: "Суббота", value: 40},
+   {group: "Воскресенье", value: 21},
+];
+
+// set the dimensions and margins of the graph
+const margin = {top: 30, right: 30, bottom: 70, left: 60},
+    width = 1260 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
+
+// Initialize the X axis
+const x = d3.scaleBand()
+  .range([ 0, width ])
+  .padding(0.2);
+const xAxis = svg.append("g")
+  .attr("transform", `translate(0,${height})`)
+
+// Initialize the Y axis
+const y = d3.scaleLinear()
+  .range([ height, 0]);
+const yAxis = svg.append("g")
+  .attr("class", "myYaxis")
+
+
+// A function that create / update the plot for a given variable:
+function update(data) {
+
+  // Update the X axis
+  x.domain(data.map(d => d.group))
+  xAxis.call(d3.axisBottom(x))
+
+  // Update the Y axis
+  y.domain([0, d3.max(data, d => d.value) ]);
+  yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+  // Create the u variable
+  var u = svg.selectAll("rect")
+    .data(data)
+
+  u
+    .join("rect") // Add a new rect for each new elements
+    .transition() 
+    .duration(1000)
+      .attr("x", d => x(d.group))
+      .attr("y", d => y(d.value))
+      .attr("width", x.bandwidth())
+      .attr("height", d => height - y(d.value))
+      .attr("fill", "#d6af01")
+}
+
+// Initialize the plot with the first dataset
+update(data1)
+
+      
+      </script>
+  </section><!-- End Hero -->
+
+
+
+  
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+          
+          
+<!-- Create a div where the graph will take place -->
+       
+
+      </div>
+    </section><!-- End About Section -->
+
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+  
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Agrin Delivery</h3>
+            <p>
+              Office 145, 55/17 Mangilik El Avenue <br>
+              010017, Nur-Sultan<br>
+              Kazakhstan <br><br>
+              <strong>Сотовая связь:</strong> +7 (701) 800-47-80<br>
+              <strong>Почта:</strong> info@e-agrin.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Полезные ссылки</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#hero">Главная</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">О нас</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://e-agrin.com/ru/" target="_blank">Agrin</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Наши услуги</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Оформление доставки</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Детальная информация и графики</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Социальные сети</h4>
+            <p>Подпишитесь, чтобы не упускать из виду самые разные новости</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Name Team</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/ninestars-free-bootstrap-3-theme-for-creative/ -->
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

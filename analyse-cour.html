@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Agrin Delivery</title>
+
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <script src="assets/js/analyse1.js"></script>
+  <script src="https://d3js.org/d3.v6.js"></script>
+  
+  
+
+
+</head>
+
+<body class="animate__fadeIn">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+          
+        <a href="https://e-agrin.com/"><img src="assets/img/logo/agrin-logo.png" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="index.html">Главная</a></li>
+          <li class="dropdown"><a href="analyse.html"><span>Аналитика</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="analyse-del.html">Заявки на доставку</a></li>  
+              <li><a href="analyse-cour.html">Процентное соотношение курьерских служб на пользователей</a></li>  
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="ordersAll.html">Список всех заказов</a></li>
+          <li class="dropdown"><a href="#"><span>Услуги</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="delivery.html">Оформление доставки</a></li>  
+            </ul>
+          </li>
+          
+
+          <li><a href="registration.html" class="getstarted scrollto">Зарегистрироваться</a></li>
+          <li><a href="login.html" class="getstarted scrollto">Войти</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+                 <h1 style="margin-bottom: 100px; text-align: center;">Расклад поставщиков товара следующий:</h1>
+<!-- Create a div where the graph will take place -->
+      <div id="my_datavizter"></div>
+
+      <script>
+        const width = 1250,
+        height = 350,
+        margin = 0;
+
+// The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+const radius = Math.min(width, height) / 2 - margin;
+
+// append the svg object to the div called 'my_dataviz'
+const svg = d3.select("#my_datavizter")
+  .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", `translate(${width/2}, ${height/2})`);
+
+// create 2 data_set
+const data1 = {a: 9, b: 20, c:30, d:8, e:12}
+
+// set the color scale
+const color = d3.scaleOrdinal()
+  .domain(["a", "b", "c", "d", "e", "f"])
+  .range(d3.schemeDark2);
+
+// A function that create / update the plot for a given variable:
+function update(data) {
+
+  // Compute the position of each group on the pie:
+  const pie = d3.pie()
+    .value(function(d) {return d[1]; })
+    .sort(function(a, b) { return d3.ascending(a.key, b.key);} ) // This make sure that group order remains the same in the pie chart
+  const data_ready = pie(Object.entries(data))
+
+  // map to data
+  const u = svg.selectAll("path")
+    .data(data_ready)
+
+  // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+  u
+    .join('path')
+    .transition()
+    .duration(1000)
+    .attr('d', d3.arc()
+      .innerRadius(0)
+      .outerRadius(radius)
+    )
+    .attr('fill', function(d){ return(color(d.data[0])) })
+    .attr("stroke", "white")
+    .style("stroke-width", "2px")
+    .style("opacity", 1)
+
+
+}
+
+// Initialize the plot with the first dataset
+update(data1)
+
+      
+      </script>
+  </section><!-- End Hero -->
+
+
+
+  
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+          
+          
+<!-- Create a div where the graph will take place -->
+       
+
+      </div>
+    </section><!-- End About Section -->
+
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+  
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Agrin Delivery</h3>
+            <p>
+              Office 145, 55/17 Mangilik El Avenue <br>
+              010017, Nur-Sultan<br>
+              Kazakhstan <br><br>
+              <strong>Сотовая связь:</strong> +7 (701) 800-47-80<br>
+              <strong>Почта:</strong> info@e-agrin.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Полезные ссылки</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#hero">Главная</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">О нас</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://e-agrin.com/ru/" target="_blank">Agrin</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Наши услуги</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Оформление доставки</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Детальная информация и графики</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Социальные сети</h4>
+            <p>Подпишитесь, чтобы не упускать из виду самые разные новости</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Name Team</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/ninestars-free-bootstrap-3-theme-for-creative/ -->
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

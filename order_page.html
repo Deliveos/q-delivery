@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <div class="order_page">
+            <div class="order_page_main_text">
+                <p>
+                    Оформить заказ:
+                </p>
+            </div>
+            <div class="order_page_city">
+                <div class="order_page_city_text">
+                    <p>
+                        Выберите ваш город
+                    </p>
+                </div>
+                <div class="order_page_city_list">
+                    <select class="order_page_list_select">
+                        <option value="">Нур-Султан(Астана)</option>
+                        <option value="">Алма-Ата</option>
+                        <option value="">Уральск</option>
+                        <option value="">Актобе</option>
+                        <option value="">Шымкент</option>
+                        <option value="">Актау</option>
+                        <option value="">Туркестан</option>
+                        <option value="">Костанай</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="order_page_type_delivery">
+                <div class="order_page_type_delivery_text">
+                    <p>
+                        Выберите способ доставки
+                    </p>
+                </div>
+
+                <div class="order_page_type_delivery_button">
+                    <button>
+                        <p>
+                            Самовывоз
+                        </p>
+                    </button>
+                    <button>
+                        <p>
+                            Доставка
+                        </p>
+                    </button>
+                </div>
+            </div>
+
+            <div class="order_page_map">
+                <iframe class="order_page_iframe" src="https://yandex.ru/map-widget/v1/?um=constructor%3A7a4a0f7b0ae7cda90d3a5c73b95977ea081aca6c50c3459ef40803e1379db68c&amp;source=constructor" width="491" height="298" frameborder="0"></iframe>
+                
+                <div class="order_page_map_shop">
+                    <div class="opder_page_map_shop_text">
+                        <p>
+                            Выберите магазин:
+                        </p>
+                    </div>
+                    <div class="opder_page_map_shop_choose">
+                        <button class="order_page_map_shop_choose_1">
+                            <p>
+                                Магазин 1
+                            </p>
+                        </button>
+
+                        <button class="order_page_map_shop_choose_2">
+                            <p>
+                                Магазин 2
+                            </p>
+                        </button>
+
+                        <button class="order_page_map_shop_choose_3">
+                            <p>
+                                Магазин 3
+                            </p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <form action="" class="order_page_pay_method">
+                
+                <div class="order_page_pay_method_choose">
+                    <div class="order_page_pay_mathod_text">
+                        <p>
+                            Способ оплаты
+                        </p>
+                    </div>
+
+                    <p class="order_page_pay_method_p"><input type="radio" class="order_page_pay_method_radio">Наличными</p>
+                    <p class="order_page_pay_method_p"><input type="radio" class="order_page_pay_method_radio">Visa</p>
+                    <p class="order_page_pay_method_p"><input type="radio" class="order_page_pay_method_radio">Mastercard</p>
+                    <p class="order_page_pay_method_p"><input type="radio" class="order_page_pay_method_radio">Visa/Mastercard</p>
+                </div>
+            </form>
+
+
+        </div>
+    </form>
+</body>
+
+
+<style>
+     @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .order_page_pay_method_p{
+        font-family: "Raleway", sans-serif;
+        font-size: 15px;
+        color: #4e4039;
+        
+    }
+    .order_page_pay_method_radio{
+        width: 20px;
+        height: 20px;
+        margin-left: 10px;
+    }
+    .order_page_pay_mathod_text p{
+        font-family: "Raleway", sans-serif;
+        font-size: 25px;
+        color: #4e4039;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .order_page_pay_method_choose input{
+        margin-top: 10px;
+    }
+    .order_page_pay_method_choose{
+        width: 200px;
+        height: 210px;
+        background-color: gainsboro;
+        border-radius: 10px;
+        position: absolute;
+        left: 750px;
+        bottom: 412px;
+    }
+    .order_page_map_shop_choose_2{
+        margin-top: 30px;
+    }
+    .order_page_map_shop_choose_3{
+        margin-top: 30px;
+    }
+    .order_page_map_shop_choose_1{
+        margin-top: 30px;
+    }
+    .opder_page_map_shop_choose button{
+        width: 230px;
+        height: 35px;
+        border-radius: 10px;
+        border: solid 1px #4e4039 ;
+    }
+
+    .order_page_map_shop{
+        width: 350px;
+    }
+    .opder_page_map_shop_text p{
+        font-family: "Raleway", sans-serif;
+        font-size: 25px;
+        color: #4e4039;
+    }
+    .order_page_map{
+        width: 900px;
+        height: 300px;
+        background-color: gainsboro;
+        border-radius: 10px;
+        margin-top: 50px;
+        margin-left: 50px;
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    .order_page_iframe{
+        border-radius: 10px;
+        width: 500px;
+        height: 250px;
+        margin-top: 30px;
+        margin-left: 10px;
+    }
+    .order_page_type_delivery_button{
+        width: 230px;
+        display: flex;
+        justify-content: space-between;
+        padding-right: 10px;
+        margin-top: 20px;
+    }
+
+    .order_page_type_delivery_button p{
+        font-family: "Raleway", sans-serif;
+        font-size: 15px;
+        color: #4e4039;
+    }
+    .order_page_type_delivery_button button{
+        border: solid 1px #4e4039;
+        width: 100px;
+        height: 35px;
+        border-radius: 10px;
+        background-color: white;
+    }
+    .order_page_type_delivery_text p{
+        font-family: "Raleway", sans-serif;
+        font-size: 25px;
+        color: #4e4039;
+        width: 400px;
+        margin-top: 20px;
+        padding-left: 10px;
+    }
+    .order_page_type_delivery{
+        width: 650px;
+        height: 80px;
+        background-color: gainsboro;
+        margin-top: 50px;
+        margin-left: 50px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+
+
+    .order_page_list_select{
+        width: 230px;
+        height: 35px;
+        border-radius: 10px;
+    }
+    .order_page_city_list{
+        width: 1000px;
+        height: 400px;
+        margin-top: 20px;
+    }
+    .order_page_list_select option{
+        font-family: "Raleway", sans-serif;
+        font-size: 15px;
+        color: #4e4039;
+    }
+    .order_page_city_text p{
+        font-family: "Raleway", sans-serif;
+        font-size: 25px;
+        color: #4e4039;
+        width: 400px;
+        margin-top: 20px;
+        padding-left: 10px;
+    }
+    .order_page_city{
+        width: 650px;
+        height: 80px;
+        background-color: gainsboro;
+        margin-top: 50px;
+        margin-left: 50px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .order_page{
+        width: 100%;
+        height: 200vh;
+        background-color: #fef8f5;
+    }
+    .order_page_main_text p{
+        font-family: "Raleway", sans-serif;
+        font-size: 30px;
+        color: #4e4039;
+        padding-left: 50px;
+        padding-top: 50px;
+    }
+
+
+</style>
+</html>
