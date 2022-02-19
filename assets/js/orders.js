@@ -1,11 +1,11 @@
-window.addEventListener('DOMContentLoaded',  () => {
-    function init()  {
+window.addEventListener('DOMContentLoaded', async () => {
+    async function init()  {
      
 
-         getResourse('https://q-delivery.herokuapp.com/events?page=1&type=7')
-            .then(data => createCards(data))
-            .catch(err => console.error(err));
+        const resourse = await getResourse('https://q-delivery.herokuapp.com/events?page=1&type=7')
+         console.log(resourse);
 
+         createCards(resourse);
 
         this.remove();
     }
@@ -15,8 +15,11 @@ window.addEventListener('DOMContentLoaded',  () => {
 
 
 async function  getResourse(url) {
-    
-    const res = await fetch(url);
+    console.log(3354);
+    const res = await fetch(url, {headers: {
+        Origin: '*',
+        'Access-Control-Allow-Origin': '*'
+    }});
     
     
 
@@ -29,15 +32,15 @@ async function  getResourse(url) {
 
 
 function createCards(response) {
-    response.forEach(item => {
+    response.elements.forEach(item => {
         let card = document.createElement('div');
         
         card.classList.add('card');
     
         card.innerHTML = `
             <div>Заказ</div>
-            <div class="_id">ID заказа: ${item._id}</div>
-            <div class="type">Тип ивента: ${item.type}</div>
+            <div class="_id">ID заказа: ${item._id.id}</div>
+            <div class="type">Тип события: ${item.type}</div>
             <div class="Date">Дата: ${item.Date}</div>
             <div class="FailReason">Неудача: ${item.FailReason}</div>
         `;
