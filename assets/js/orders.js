@@ -42,7 +42,10 @@ function createCards(response) {
             <div class="_id">ID заказа: ${item._id.id}</div>
             <div class="type">Тип события: ${item.type}</div>
             <div class="Date">Дата: ${item.Date}</div>
-            <div class="FailReason">Неудача: ${item.FailReason}</div>
+            <div class="ClientName">Имя пользователя: ${item.ClientName}</div>
+          <div class="CompanyName">Название компании: ${item.CompanyName}</div>
+           <div class="FromLocationName">Откуда: ${item.FromLocationName}</div>
+           <div class="ToLocationName">Куда: ${item.ToLocationName}</div>
         `;
         document.querySelector('.row').appendChild(card);
     });
